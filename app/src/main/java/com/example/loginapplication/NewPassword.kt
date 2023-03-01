@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 class NewPassword : AppCompatActivity() {
 
@@ -31,10 +32,16 @@ class NewPassword : AppCompatActivity() {
             else if (etNew2.text.isEmpty()){
                 etNew2.error="Confirm your password"
                 etNew2.requestFocus()
-            }else{
+            }
+            else if(etNew2.text.toString().equals(etNew.text.toString())==false){
+                etNew2.error="Confirm password is not same"
+            }
+            else{
                 var intent=Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }
+            Toast.makeText(applicationContext,"Password is successfully changed",Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
